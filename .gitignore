@@ -5,6 +5,8 @@
 [Ll]ogs/
 [Uu]ser[Ss]ettings/
 
+TextMesh Pro/
+
 *.csproj
 *.unityproj
 *.sln
