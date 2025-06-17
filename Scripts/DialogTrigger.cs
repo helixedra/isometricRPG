@@ -11,4 +11,6 @@ public class DialogueTrigger : MonoBehaviour
             Object.FindFirstObjectByType<DialogueManager>().LoadDialogueFromFile(dialogueFileName);
         }
     }
+
+
 }

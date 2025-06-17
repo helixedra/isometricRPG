@@ -7,16 +7,21 @@ public class DiabloStyleController : MonoBehaviour
     public Camera mainCamera;
 
     private CharacterController controller;
+    private DialogueManager dialogueManager;
 
     void Start()
     {
         controller = GetComponent<CharacterController>();
+        dialogueManager = Object.FindFirstObjectByType<DialogueManager>();
         if (mainCamera == null)
             mainCamera = Camera.main;
     }
 
     void Update()
     {
+        if (dialogueManager.dialogueUI.activeSelf)
+            return;
+
         // get the plane of the ground
         Plane groundPlane = new Plane(Vector3.up, Vector3.zero);
         Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
