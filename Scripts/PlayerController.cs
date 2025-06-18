@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 [RequireComponent(typeof(CharacterController))]
 public class DiabloStyleController : MonoBehaviour
@@ -8,11 +9,13 @@ public class DiabloStyleController : MonoBehaviour
 
     private CharacterController controller;
     private DialogueManager dialogueManager;
+    private PlayerData playerData;
 
     void Start()
     {
         controller = GetComponent<CharacterController>();
         dialogueManager = Object.FindFirstObjectByType<DialogueManager>();
+        playerData = Object.FindFirstObjectByType<PlayerData>();
         if (mainCamera == null)
             mainCamera = Camera.main;
     }
@@ -41,6 +44,16 @@ public class DiabloStyleController : MonoBehaviour
                 // rotate player to cursor
                 Quaternion lookRotation = Quaternion.LookRotation(moveDir);
                 transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 10f);
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            Inventory inventory = playerData.GetInventory();
+            List<InventoryItem> items = inventory.GetItems();
+            foreach (InventoryItem item in items)
+            {
+                Debug.Log(item.name + " - " + item.amount);
             }
         }
     }
